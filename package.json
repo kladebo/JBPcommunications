@@ -15,6 +15,14 @@
         "url": "https://github.com/kladebo/JBPcommpunications.git"
     },
     "license": "ISC",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/kladebo/JBPcommunications.git"
+    },
+    "bugs": {
+        "url": "https://github.com/kladebo/JBPcommunications/issues"
+    },
+    "homepage": "https://github.com/kladebo/JBPcommunications",
     "devDependencies": {
         "autoprefixer": "^6.3.6",
         "cssnano": "^3.5.2",
