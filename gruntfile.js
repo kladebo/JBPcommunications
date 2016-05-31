@@ -32,10 +32,12 @@ module.exports = function (grunt) {
                     include: ['main'],
                     paths: {
                         main: 'app/main',
-                        domReady: 'lib/domReady.min',
-                        promise: 'lib/es6-promise.min'
+                        domReady: 'empty:',
+                        text: 'empty:',
+                        promise: 'empty:',
+                        underscore: 'empty:'
                     },
-                    out: "build/js/app/main.min.js"
+                    out: 'build/js/app/main.min.js'
                 }
             }
         },
@@ -103,8 +105,9 @@ module.exports = function (grunt) {
             //subfolders: ['path/to/dir/*/'],
             //css: ['path/to/dir/*.css'],
             //all_css: ['path/to/dir/**/*.css']
+            data: ['build/json/', 'www/js/data/'],
             css: ['build/css/', 'work/css/app/', 'www/css/*'],
-            appjs: ['build/js/app/', 'www/js/app/', 'www/js/app.js']
+            appjs: ['build/js/app/', 'www/js/', 'www/js/app.min.js']
                 //all_css: ['path/to/dir/**/*.css']
         },
         copy: {
@@ -117,21 +120,35 @@ module.exports = function (grunt) {
             },
             appjs: {
                 cwd: 'build/js', // set working folder / root to copy
-                src: '**/*', // copy only root files
+                src: '**/*', // copy all files and subfolders
                 dest: 'www/js', // destination folder
                 expand: true // required when using cwd
             },
-            requirejs: {
-                cwd: 'work/js', // set working folder / root to copy
-                src: 'require.js', // copy only root files
-                dest: 'www/js', // destination folder
+            libjs: {
+                cwd: 'work/js/lib', // set working folder / root to copy
+                src: '*.js', // copy only root files
+                dest: 'www/js/lib', // destination folder
                 expand: true // required when using cwd
             },
             data: {
-                cwd: 'work/data', // set working folder / root to copy
-                src: '**.min.*', // copy only root files
+                cwd: 'build/json', // set working folder / root to copy
+                src: '*.min.json', // copy only root files
                 dest: 'www/js/data', // destination folder
                 expand: true // required when using cwd
+            }
+        },
+        jsonmin: {
+            dev: {
+                options: {
+                    stripWhitespace: true,
+                    stripComments: true
+                },
+                files: {
+                    'build/json/cases.min.json': 'work/js/data/cases.json'
+                        //'js/data/users.min.json': 'work/js/data/users.json',
+                        //'js/data/menu.min.json': 'work/js/data/menu.json'
+                        //"path/to/another/destination": ["multiple/source/files", "are/supported", "as/an/array"]
+                }
             }
         }
     });
@@ -141,6 +158,8 @@ module.exports = function (grunt) {
 
     // npm install grunt-postcss pixrem autoprefixer cssnano --save-dev
 
+    // npm install grunt-jsonmin --save-dev
+
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-copy');
@@ -148,10 +167,11 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-jsonmin');
     grunt.loadNpmTasks('grunt-postcss');
 
     // Default task(s).
-    grunt.registerTask('code', ['jshint', 'clean:appjs', 'requirejs', 'uglify', 'copy:appjs', 'copy:requirejs', 'copy:data']);
+    grunt.registerTask('code', ['jshint', 'clean:appjs', 'requirejs', 'uglify', 'copy:appjs', 'copy:libjs', 'clean:data', 'jsonmin', 'copy:data']);
     grunt.registerTask('css', ['clean:css', 'sass', 'postcss', 'copy:css']);
     grunt.registerTask('default', ['code', 'css']);
 

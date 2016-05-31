@@ -1,0 +1,10 @@
+{
+    "undef": true,
+    "unused": true,
+    "browser": true,
+    "devel": true,
+    //       "qunit": true
+    "nonew": true,
+    //"notypeof": true,
+    "predef": ["requirejs", "require", "define", "_"]
+}

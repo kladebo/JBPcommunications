@@ -1,0 +1,16 @@
+{
+    "id": "cases",
+    "cases": [{
+        "id": 0,
+        "src": "case__01.html",
+        "description": "bla 01"
+    }, {
+        "id": 1,
+        "src": "case__02.html",
+        "description": "bla 02"
+    }, {
+        "id": 2,
+        "src": "case__03.html",
+        "description": "bla 03"
+    }]
+}
