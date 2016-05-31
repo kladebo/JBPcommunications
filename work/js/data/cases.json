@@ -2,14 +2,32 @@
     "id": "cases",
     "cases": [{
         "id": 0,
+        "label": "HISCOX",
+        "keywords": [{
+            "keyword": "Copywriting",
+            "type": ["interviewspreads"]
+        }],
         "src": "case__01.html",
         "description": "bla 01"
     }, {
         "id": 1,
+        "label": "Van der Steenhoven advocaten",
+        "keywords": [{
+            "keyword": "Copywriting",
+            "type": ["brochure", "website", "advertenties"]
+        }],
         "src": "case__02.html",
         "description": "bla 02"
     }, {
         "id": 2,
+        "label": "the Gentry",
+        "keywords": [{
+            "keyword": "Copywriting",
+            "type": ["website"]
+        }, {
+            "keyword": "Projectbegeleiding",
+            "type": ["productie"]
+        }],
         "src": "case__03.html",
         "description": "bla 03"
     }]
