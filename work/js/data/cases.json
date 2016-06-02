@@ -1,26 +1,32 @@
 {
     "id": "cases",
     "cases": [{
-        "id": 0,
+        "id": 1,
         "label": "HISCOX",
+        "logo":"logo-hiscox.gif",
         "keywords": [{
             "keyword": "Copywriting",
             "type": ["interviewspreads"]
         }],
-        "src": "case__01.html",
+        "src": "hiscox.html",
         "description": "bla 01"
     }, {
-        "id": 1,
+        "id": 2,
         "label": "Van der Steenhoven advocaten",
+        "logo":"logo-steenhoven.gif",
         "keywords": [{
             "keyword": "Copywriting",
             "type": ["brochure", "website", "advertenties"]
+        }, {
+            "keyword": "Projectbegeleiding",
+            "type": ["productie"]
         }],
-        "src": "case__02.html",
+        "src": "steenhoven.html",
         "description": "bla 02"
     }, {
-        "id": 2,
+        "id": 3,
         "label": "the Gentry",
+        "logo":"logo-gentry.png",
         "keywords": [{
             "keyword": "Copywriting",
             "type": ["website"]
@@ -28,7 +34,39 @@
             "keyword": "Projectbegeleiding",
             "type": ["productie"]
         }],
-        "src": "case__03.html",
+        "src": "gentry.html",
         "description": "bla 03"
+    }, {
+        "id": 4,
+        "label": "Din",
+        "logo":"logo-din.png",
+        "keywords": [{
+            "keyword": "Advies"
+        }, {
+            "keyword": "Concept- en merkontwikkeling"
+        }, {
+            "keyword": "Copywriting"
+        }, {
+            "keyword": "Projectbegeleiding",
+            "type": ["productie"]
+        }],
+        "src": "din.html",
+        "description": "bla 03"
+    }, {
+        "id": 5,
+        "label": "Coek",
+        "logo":"logo-coek.png",
+        "keywords": [{
+            "keyword": "Advies"
+        }, {
+            "keyword": "Concept- en merkontwikkeling"
+        }, {
+            "keyword": "Copywriting"
+        }, {
+            "keyword": "Projectbegeleiding",
+            "type": ["productie"]
+        }],
+        "src": "coek.html",
+        "description": "bla coek"
     }]
 }

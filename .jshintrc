@@ -6,5 +6,5 @@
     //       "qunit": true
     "nonew": true,
     //"notypeof": true,
-    "predef": ["requirejs", "require", "define", "_"]
+    "predef": ["Promise","requirejs", "require", "define", "_"]
 }

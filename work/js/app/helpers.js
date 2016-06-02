@@ -3,7 +3,7 @@
 define(function (require) {
     'use strict';
 
-    var get;
+    var get, getFile, getImg;
 
 
     /*
@@ -11,8 +11,8 @@ define(function (require) {
      */
 
     require('promise').polyfill();
-    
-    
+
+
 
     get = function (url) {
         // Return a new promise.
@@ -36,7 +36,7 @@ define(function (require) {
 
             // Handle network errors
             req.onerror = function () {
-                reject(new Error("Network Error"));
+                reject(new Error('Network Error'));
             };
 
             // Make the request
@@ -44,10 +44,30 @@ define(function (require) {
         });
     };
 
-    
+    getFile = function (url) {
+        return new Promise(function (resolve) {
+            require([url], function (html) {
+                resolve(html);
+            });
+        });
+    };
+
+    getImg = function (url) {
+        return new Promise(function (resolve, reject) {
+            var img = document.createElement('img');
+            img.src = url;
+            img.onload = function (){
+                resolve(img);
+            };
+            img.onerror = function(){
+                reject(new Error('Loading Error'));
+            };
+        });
+    };
+
     
     /*
-     *  Helper funtions
+     *  Helper functions
      */
 
     return {
@@ -55,6 +75,24 @@ define(function (require) {
         getJSON: function (url) {
             return get(url).then(JSON.parse).catch(function (err) {
                 console.error("getJSON failed for", url, err);
+                throw err;
+            });
+        },
+
+        getFile: function (url) {
+            return getFile(url).then(function (data) {
+                return data;
+            }).catch(function (err) {
+                console.error("getFile failed for", url, err);
+                throw err;
+            });
+        },
+
+        getImg: function (url){
+            return getImg(url).then(function (img) {
+                return img;
+            }).catch(function (err) {
+                console.error("getImg failed for", url, err);
                 throw err;
             });
         }

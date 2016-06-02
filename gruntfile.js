@@ -105,13 +105,14 @@ module.exports = function (grunt) {
             //subfolders: ['path/to/dir/*/'],
             //css: ['path/to/dir/*.css'],
             //all_css: ['path/to/dir/**/*.css']
-            data: ['build/json/', 'www/js/data/'],
+            data: ['build/json/', 'www/js/data/', 'www/html/'],
             css: ['build/css/', 'work/css/app/', 'www/css/*'],
             appjs: ['build/js/app/', 'www/js/', 'www/js/app.min.js']
                 //all_css: ['path/to/dir/**/*.css']
         },
         copy: {
             css: {
+                nonull: true,
                 cwd: 'work/css', // set working folder / root to copy
                 src: '**/*', // copy all files and subfolders
                 dest: 'www/css', // destination folder
@@ -119,22 +120,33 @@ module.exports = function (grunt) {
 
             },
             appjs: {
+                nonull: true,
                 cwd: 'build/js', // set working folder / root to copy
                 src: '**/*', // copy all files and subfolders
                 dest: 'www/js', // destination folder
                 expand: true // required when using cwd
             },
             libjs: {
+                nonull: true,
                 cwd: 'work/js/lib', // set working folder / root to copy
                 src: '*.js', // copy only root files
                 dest: 'www/js/lib', // destination folder
                 expand: true // required when using cwd
             },
             data: {
-                cwd: 'build/json', // set working folder / root to copy
-                src: '*.min.json', // copy only root files
-                dest: 'www/js/data', // destination folder
-                expand: true // required when using cwd
+                nonull: true,
+                files: [{
+                    cwd: 'build/json', // set working folder / root to copy
+                    src: '*.min.json', // copy only root files
+                    dest: 'www/js/data', // destination folder
+                    expand: true // required when using cwd
+                },{
+                    cwd: 'work/html', // set working folder / root to copy
+                    src: '*.html', // copy only root files
+                    dest: 'www/html', // destination folder
+                    expand: true // required when using cwd
+                }]
+
             }
         },
         jsonmin: {
