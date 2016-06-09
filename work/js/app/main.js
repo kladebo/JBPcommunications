@@ -11,8 +11,11 @@ define(function (require) {
         cases = require('app/cases');
 
 
-    cases.add();
 
+ //   setTimeout(function(){
+        cases.addLogos();
+//    },20);
+    cases.addCases();
 
     /*
      *  Start modifying the DOM
@@ -20,7 +23,7 @@ define(function (require) {
 
     require(['domReady!'], function () {
 
-        print('domReady');
+        print('domReady',cases);
 
     });
 

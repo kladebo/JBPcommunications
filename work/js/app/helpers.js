@@ -60,7 +60,7 @@ define(function (require) {
                 resolve(img);
             };
             img.onerror = function(){
-                reject(new Error('Loading Error'));
+                reject(new Error('img loading failed'));
             };
         });
     };

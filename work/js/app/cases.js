@@ -2,7 +2,8 @@ define(['underscore', 'app/helpers'], function (_, helper) {
     'use strict';
 
 
-    var format,
+    var cases_data,
+        format,
         enhanceImg;
 
     _.templateSettings = {
@@ -44,15 +45,43 @@ define(['underscore', 'app/helpers'], function (_, helper) {
             }().join(', ')
         });
 
-        return wrapper;
+        return wrapper.children[0];
     };
 
-    enhanceImg = function (img) {
-        var wrapper = document.createElement('div');
-        wrapper.className = 'img__case';
-        wrapper.appendChild(img);
+    enhanceImg = function (img, data) {
+        var wrapper = document.createElement('figure'),
+            innerwrapper = document.createElement('div'),
+            textbox = document.createElement('div');
 
-        return wrapper;
+        wrapper.className = 'figure';
+        if (img.className.indexOf('figure--wide') >= 0) {
+            wrapper.className += ' figure--wide';
+        }
+        img.parentElement.insertBefore(wrapper, img);
+        //wrapper.innerHTML = 'klaas';
+
+        innerwrapper.className = 'figure--viewport';
+        innerwrapper.appendChild(img);
+
+        textbox.className = 'figure--text';
+        innerwrapper.appendChild(textbox);
+        textbox.innerHTML = img.title || data.description;
+
+        img.className = 'figure--img';
+
+        wrapper.appendChild(innerwrapper);
+    };
+
+
+    cases_data = function () {
+        if (!Case.data) {
+            return helper.getJSON('js/data/cases.min.json').then(function (data) {
+                Case.data = data;
+                return data;
+            });
+        } else {
+            return Promise.resolve(Case.data);
+        }
     };
 
     var Case = {
@@ -61,9 +90,24 @@ define(['underscore', 'app/helpers'], function (_, helper) {
          *  http://www.html5rocks.com/en/tutorials/es6/promises/
          */
 
-        add: function () {
-            helper.getJSON('js/data/cases.min.json').then(function (data) {
+        addLogos: function () {
+            cases_data().then(function (data) {
+                _.map(data.cases, function (item) {
+                    return helper.getImg('img/' + item.logo).then(function (img) {
+                        require(['domReady!'], function () {
+                            //console.log('img');
+                            img.title = item.label;
+                            img.className = 'case__logo';
+                            document.getElementById('logos').appendChild(img);
+                        });
+                    });
+                });
+            });
+        },
 
+        addCases: function () {
+            cases_data().then(function (data) {
+                //Case.data = Case.data || data;
 
                 /*
                 // Start off with a promise that always resolves
@@ -93,33 +137,19 @@ define(['underscore', 'app/helpers'], function (_, helper) {
                         var file = 'text!tpl/' + item.src + '!strip';
                         return helper.getFile(file);
                     }).then(function (html) {
-                        
+
                         // Write to the screen
                         require(['domReady!'], function () {
                             var template = format(html, item);
 
                             _.each(template.getElementsByTagName('img'), function (img) {
-                                img.style.border = '3px solid red';
+                                enhanceImg(img, item);
                             });
 
                             document.getElementById('content').appendChild(template);
                         });
                     });
                 }, Promise.resolve());
-
-
-                _.map(data.cases, function (item) {
-                    return helper.getImg('img/' + item.logo).then(function (img) {
-                        require(['domReady!'], function () {
-                            console.log('img');
-                            img.title = item.label;
-                            img.className = 'case__logo';
-                            document.getElementById('header').appendChild(img);
-                        });
-                    });
-                });
-
-
 
 
                 /*
