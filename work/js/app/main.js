@@ -8,14 +8,26 @@ define(function (require) {
 
     var print = require('app/print'),
         helper = require('app/helpers'),
-        cases = require('app/cases');
+        cases = require('app/cases'),
+        card = require('app/card'),
+        endless = require('app/endless');
 
 
 
- //   setTimeout(function(){
-        cases.addLogos();
-//    },20);
-    cases.addCases();
+    //   setTimeout(function(){
+//    cases.addLogos();
+    //    },20);
+//    cases.addCases();
+
+    card.add({
+        text: 'KKlaas de Boer',
+        img: 'img/hiscox__01.png'
+    }).then(function (template) {
+        require(['domReady!'], function () {
+            document.getElementById('cards').appendChild(template);
+        });
+    });
+
 
     /*
      *  Start modifying the DOM
@@ -23,7 +35,7 @@ define(function (require) {
 
     require(['domReady!'], function () {
 
-        print('domReady',cases);
+        print('domReady', cases);
 
     });
 

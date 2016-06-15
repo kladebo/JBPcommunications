@@ -105,6 +105,31 @@ define(['underscore', 'app/helpers'], function (_, helper) {
             });
         },
 
+        addCase: function (id, wrapper) {
+            var aCase;
+            cases_data().then(function (data) {
+                aCase = data.cases[id];
+                
+                //console.log(aCase);
+                var file = 'text!tpl/' + aCase.src + '!strip';
+                return helper.getFile(file);
+            }).then(function (html) {
+
+                // Write to the screen
+                require(['domReady!'], function () {
+                    var template = format(html, aCase);
+
+                    _.each(template.getElementsByTagName('img'), function (img) {
+                        enhanceImg(img, aCase);
+                    });
+                    
+                    wrapper.appendChild(template);
+                });
+            });
+
+            return;
+        },
+
         addCases: function () {
             cases_data().then(function (data) {
                 //Case.data = Case.data || data;
