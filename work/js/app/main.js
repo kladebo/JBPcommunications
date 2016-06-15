@@ -36,6 +36,8 @@ define(function (require) {
     require(['domReady!'], function () {
 
         print('domReady', cases);
+        
+        endless.checkScroll();
 
     });
 
