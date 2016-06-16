@@ -15,7 +15,7 @@ define(function (require) {
 
 
     //   setTimeout(function(){
-//    cases.addLogos();
+    cases.addLogos();
     //    },20);
 //    cases.addCases();
 

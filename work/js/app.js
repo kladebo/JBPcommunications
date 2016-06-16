@@ -10,24 +10,26 @@
         baseUrl: 'js/lib',
 
         paths: {
-            tpl: ['../../../work/html'],
+            tpl: [
+                '../../html',
+                 '../../../work/html'],
             app: [
-                //'../app',
+                '../app',
                 '../../../work/js/app'],
             main: [
-               // '../app/main.min',
+                '../app/main.min',
                 '../../../work/js/app/main'],
             domReady: [
-                //'//cdnjs.cloudflare.com/ajax/libs/require-domReady/2.0.1/domReady.min',
+                '//cdnjs.cloudflare.com/ajax/libs/require-domReady/2.0.1/domReady.min',
                 'domReady.min'],
             text: [
-                //'//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.3/underscore-min',
+                '//cdnjs.cloudflare.com/ajax/libs/require-text/2.0.12/text.min',
                 'text'],
             promise: [
-                //'//cdnjs.cloudflare.com/ajax/libs/es6-promise/3.2.1/es6-promise.min',
+                '//cdnjs.cloudflare.com/ajax/libs/es6-promise/3.2.1/es6-promise.min',
                 'es6-promise.min'],
             underscore: [
-                //'//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.3/underscore-min',
+                '//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min',
                 'underscore-min']
         },
 

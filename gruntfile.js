@@ -142,7 +142,7 @@ module.exports = function (grunt) {
                     expand: true // required when using cwd
                 },{
                     cwd: 'work/html', // set working folder / root to copy
-                    src: '*.html', // copy only root files
+                    src: '**/*', // copy only root files
                     dest: 'www/html', // destination folder
                     expand: true // required when using cwd
                 }]
