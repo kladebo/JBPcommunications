@@ -11,13 +11,13 @@
 
         paths: {
             tpl: [
-                '../../html',
+                //'../../html',
                  '../../../work/html'],
             app: [
-                '../app',
+                //'../app',
                 '../../../work/js/app'],
             main: [
-                '../app/main.min',
+                //'../app/main.min',
                 '../../../work/js/app/main'],
             domReady: [
                 '//cdnjs.cloudflare.com/ajax/libs/require-domReady/2.0.1/domReady.min',

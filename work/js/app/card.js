@@ -20,21 +20,21 @@ define(['underscore', 'app/helpers'], function (_, helper) {
 
     mergeTemplate = function (html, data) {
 
-/*
-        return helper.getImg(data.img).then(function (img) {
-            var wrapper = document.createElement('div');
-            wrapper.innerHTML = _.template(html, {
-                variable: 'data'
-            })({
-                cardtext: data.text,
-                cardimg: data.img
-            });
-            return wrapper.children[0];
-        });
-*/        
-        
-        
-        
+        /*
+                return helper.getImg(data.img).then(function (img) {
+                    var wrapper = document.createElement('div');
+                    wrapper.innerHTML = _.template(html, {
+                        variable: 'data'
+                    })({
+                        cardtext: data.text,
+                        cardimg: data.img
+                    });
+                    return wrapper.children[0];
+                });
+        */
+
+
+
 
         var wrapper = document.createElement('div');
         wrapper.innerHTML = _.template(html, {
@@ -44,7 +44,7 @@ define(['underscore', 'app/helpers'], function (_, helper) {
             cardimg: data.img
         });
         return wrapper.children[0];
-        
+
     };
 
 

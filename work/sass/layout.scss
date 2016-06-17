@@ -25,6 +25,22 @@ img {
 }
 
 /* ==========================================================================
+   Helpers:
+   ========================================================================== */
+
+.vh,
+.visuallyhidden {
+    border: 0 none;
+    clip: rect(0px, 0px, 0px, 0px);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+/* ==========================================================================
    LAYOUT:
    ========================================================================== */
 
@@ -37,6 +53,8 @@ img {
     background: $app-primary-black;
     background: url(../../img/header__bg.gif) no-repeat center;
     background-size: cover;
+    box-sizing: border-box;
+    height: 100px;
     padding: 10px 0;
     width: 100%;
     z-index: 100;
@@ -45,10 +63,9 @@ img {
     }
 }
 .header {
-    box-sizing: border-box;
     margin: 0 auto;
     max-width: 960px;
-    height: 80px;
+    height: 100%;
 }
 .header h1 {
     display: inline-block;
@@ -68,50 +85,77 @@ img {
 .content__wrapper {
     width: 100%;
     @media screen and (min-width: 768px) {
-        padding-top: 90px;
+        padding-top: 100px;
     }
 }
 .content {
     box-sizing: border-box;
     margin: 0 auto;
-    max-width: 960px;
-}
-.container {
-    margin-bottom: 1.8em;
 }
 .aside {
-    padding: 0 .6em;
+    padding-right: .6em;
     @media screen and (min-width: 768px) {
         display: table-cell;
         width: 33%;
     }
 }
-.main {
+.article {
     overflow: auto;
-    padding: 0 .6em;
+    //padding: 0 .6em;
     @media screen and (min-width: 768px) {
         display: table-cell;
     }
 }
 
+/* ==========================================================================
+   LAYOUT: sections
+   ========================================================================== */
+
+.section {
+    max-width: 960px;
+    margin: 0 auto;
+    margin-bottom: 3em;
+}
+
 /*
- *  section cards
+ *  Elements: section
  */
 
-.section__cards {
-    //height: 160px;
+.section__home {
+    background-image: url(../../img/typer.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 90%;
+    opacity: .8;
+    max-width: 100%;
+    min-height: 500px;
 }
+.test {
+    display: inline-block;
+    width: 200px;
+    height: 300px;
+    border: 10px solid transparent;
+    border-image: url(../../img/border.png);
+    border-image-slice: 25;
+    border-image-width: 10px;
+    border-image-repeat: stretch;
+    border-image-outset: 0;
+}
+.section__intro {}
+.section__werk {}
+.section__cards {}
+.section__logos {}
+.section__cases {}
+
+/* ==========================================================================
+   LAYOUT: sections
+   ========================================================================== */
+
 
 /*
  *  footer: within a footer-tag
  */
 
-.footer__wrapper {
-    background: $app-primary-white;
-    background: url(../../img/footer__bg.gif) no-repeat center;
-    background-size: cover;
-    width: 100%;
-}
 .footer {
     color: $app-primary-black;
     box-sizing: border-box;
@@ -120,6 +164,17 @@ img {
     margin: 0 auto;
     max-width: 960px;
     padding: .6em 0;
+}
+
+/*
+ *  Elements
+ */
+
+.footer__wrapper {
+    background: $app-primary-white;
+    background: url(../../img/footer__bg.gif) no-repeat center;
+    background-size: cover;
+    width: 100%;
 }
 .footer__contact {
     display: inline-block;
@@ -139,6 +194,11 @@ img {
 /* ==========================================================================
    CASE enhancements:
    ========================================================================== */
+
+
+/*
+ *  figure
+ */
 
 .figure {
     background: white;
@@ -172,6 +232,11 @@ img {
         width: 40%;
     }
 }
+
+/*
+ *  Modifiers: figure
+ */
+
 .figure--wide {
     width: 100%;
     display: block;
@@ -181,17 +246,22 @@ img {
         width: 75%;
     }
 }
-.figure--viewport {
+
+/*
+ *  Elements: figure
+ */
+
+.figure__viewport {
     margin: 0;
     position: relative;
     overflow: hidden;
 }
-.figure--img {
+.figure__img {
     margin: 0 auto;
     display: block;
     width: 100%;
 }
-.figure--text {
+.figure__text {
     padding: 1em;
     left: -100%;
     top: 0;
@@ -203,88 +273,30 @@ img {
     font-size: 0.8em;
     transition: all 0.4s ease-in-out 0.3s;
 }
-.figure:hover .figure--text {
+.figure:hover .figure__text {
     left: 0;
     visibility: visible;
     transition: left 0.6s ease-in-out 0.1s;
 }
 
 /*
- *  cards
- */
-
-.card__wrapper {
-    backface-visibility: hidden;
-    //cursor: pointer;
-    display: inline-block;
-    height: 100%;
-    //max-width: 100%;
-    perspective: 800px;
-    position: relative;
-}
-.card__wrapper:hover .card__front {
-    transform: rotateX(0deg) rotateY(180deg);
-}
-.card__wrapper:hover .card__back {
-    transform: rotateX(0deg) rotateY(0deg);
-    z-index: 100;
-}
-.card {
-    display: inline-block;
-    vertical-align: middle;
-    text-align: center;
-    width: 100%;
-    height: 100%;
-}
-.card__front {
-    background: white;
-    transform: rotateX(0deg) rotateY(0deg);
-    transform-style: preserve-3d;
-    backface-visibility: hidden;
-    transition: all .5s ease-in-out;
-}
-.card__back {
-    background: $app-primary-white;
-    backface-visibility: hidden;
-    color: $app-primary-black;
-    transform: rotateX(0deg) rotateY(-180deg);
-    transform-style: preserve-3d;
-    transition: all .5s ease-in-out;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-.card__front--inner,
-.card__back--inner {
-    display: table;
-    width: 100%;
-    height: 100%;
-}
-.card__img {
-    vertical-align: middle;
-    background: red;
-    height: 100%;
-}
-.card__text {
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
-}
-
-/*
  *  Endless
  */
-.endless__wrapper{
+
+.endless__wrapper {
     min-height: 400px;
     visibility: hidden;
     opacity: 0;
     transition: opacity 1s .5s ease-in;
 }
-.endless__wrapper--visible{
+.endless__wrapper--visible {
     opacity: 1;
     visibility: visible;
-//    transition: opacity 1s ease-in;
+    //    transition: opacity 1s ease-in;
 }
+
 /* ==========================================================================
    Imports:
    ========================================================================== */
+
+@import 'card';

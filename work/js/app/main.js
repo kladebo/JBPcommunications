@@ -25,6 +25,25 @@ define(function (require) {
     }).then(function (template) {
         require(['domReady!'], function () {
             document.getElementById('cards').appendChild(template);
+            console.log('added cards',template);
+        });
+    });
+    card.add({
+        text: 'Bonjour',
+        img: 'img/din__01.png'
+    }).then(function (template) {
+        require(['domReady!'], function () {
+            document.getElementById('cards').appendChild(template);
+            console.log('added cards',template);
+        });
+    });
+    card.add({
+        text: 'Bonjour',
+        img: 'img/gentry__01.png'
+    }).then(function (template) {
+        require(['domReady!'], function () {
+            document.getElementById('cards').appendChild(template);
+            console.log('added cards',template);
         });
     });
 

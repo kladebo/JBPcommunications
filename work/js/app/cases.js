@@ -60,14 +60,14 @@ define(['underscore', 'app/helpers'], function (_, helper) {
         img.parentElement.insertBefore(wrapper, img);
         //wrapper.innerHTML = 'klaas';
 
-        innerwrapper.className = 'figure--viewport';
+        innerwrapper.className = 'figure__viewport';
         innerwrapper.appendChild(img);
 
-        textbox.className = 'figure--text';
+        textbox.className = 'figure__text';
         innerwrapper.appendChild(textbox);
         textbox.innerHTML = img.title || data.description;
 
-        img.className = 'figure--img';
+        img.className = 'figure__img';
 
         wrapper.appendChild(innerwrapper);
     };

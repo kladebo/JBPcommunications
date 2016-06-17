@@ -15,7 +15,7 @@ define(['underscore', 'app/helpers', 'app/cases'], function (_, helper, cases) {
         }
 
         function scrollDistanceFromBottom() {
-            return pageHeight() - (window.pageYOffset + self.innerHeight);
+            return pageHeight() - (window.pageYOffset + window.innerHeight);
         }
 
         function pageHeight() {
@@ -40,8 +40,9 @@ define(['underscore', 'app/helpers', 'app/cases'], function (_, helper, cases) {
             endlessWrapper.className = 'endless__wrapper';
             cases.addCase(currentPage - 1, endlessWrapper);
 
-            document.getElementById('content').appendChild(endlessWrapper);
-            console.log('currentPage:', currentPage);
+            document.getElementById('cases').appendChild(endlessWrapper);
+
+            //console.log('currentPage:', currentPage);
             setTimeout(function () {
                 endlessWrapper.className += ' endless__wrapper--visible';
             }, 1);
